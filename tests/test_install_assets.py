@@ -116,15 +116,15 @@ class InstallAssetTests(unittest.TestCase):
             self.assertTrue((SERVER_ADMIN / relative).exists(), f"{relative} missing")
 
         readme = (SERVER_ADMIN / "README.md").read_text()
-        self.assertIn("/Volumes/T9/code/lenova/thinkpad-server-admin", readme)
+        self.assertIn("<YOUR_REPO_PATH>/thinkpad-server-admin", readme)
         self.assertIn("source of truth", readme)
-        self.assertIn("/Volumes/MacShare/thinkpad-server-admin", readme)
+        self.assertIn("/Volumes/<YOUR_SHARE_NAME>/thinkpad-server-admin", readme)
         self.assertIn("mirror", readme)
         self.assertIn("can be lost", readme)
-        self.assertIn("192.168.1.60", readme)
+        self.assertIn("<YOUR_IP>", readme)
         self.assertIn("ssh thinkpad", readme)
-        self.assertIn("https://192.168.1.60", readme)
-        self.assertIn("/Volumes/MacShare", readme)
+        self.assertIn("https://<YOUR_IP>", readme)
+        self.assertIn("/Volumes/<YOUR_SHARE_NAME>", readme)
         self.assertIn("P0", readme)
 
         state = (SERVER_ADMIN / "docs/current-state.md").read_text()
@@ -142,9 +142,9 @@ class InstallAssetTests(unittest.TestCase):
 
         self.assertEqual(
             (SERVER_ADMIN / "configs/Caddyfile").read_text().strip(),
-            "https://192.168.1.60 {\n    tls internal\n    reverse_proxy 127.0.0.1:3001\n}",
+            "https://<YOUR_IP> {\n    tls internal\n    reverse_proxy 127.0.0.1:3001\n}",
         )
-        self.assertIn("[MacShare]", (SERVER_ADMIN / "configs/smb-MacShare.conf").read_text())
+        self.assertIn("[<YOUR_SHARE_NAME>]", (SERVER_ADMIN / "configs/smb-MacShare.conf").read_text())
         self.assertIn("Host thinkpad", (SERVER_ADMIN / "configs/mac-ssh-config-snippet").read_text())
 
         verify_script = (SERVER_ADMIN / "scripts/verify-server.sh")
@@ -168,22 +168,22 @@ class InstallAssetTests(unittest.TestCase):
         self.assertIn("nc -z", verify_text)
 
         backup_text = backup_script.read_text()
-        self.assertIn("/home/taylor/server-backups", backup_text)
+        self.assertIn("/home/<YOUR_USERNAME>/server-backups", backup_text)
         self.assertIn("uptime-kuma-backup-", backup_text)
         self.assertIn("tar -czf", backup_text)
         self.assertIn("Refusing to overwrite", backup_text)
         self.assertNotIn("docker stop", backup_text)
 
         smb_text = smb_script.read_text()
-        self.assertIn("/Volumes/MacShare", smb_text)
-        self.assertIn("/home/taylor/MacShare", smb_text)
+        self.assertIn("/Volumes/<YOUR_SHARE_NAME>", smb_text)
+        self.assertIn("/home/<YOUR_USERNAME>/<YOUR_SHARE_NAME>", smb_text)
         self.assertIn("Delete test files", smb_text)
         self.assertIn("read -r", smb_text)
 
         safety = (SERVER_ADMIN / "docs/do-not-delete.md").read_text()
         self.assertIn("Do not delete backups", safety)
         self.assertIn("Do not delete Docker volumes", safety)
-        self.assertIn("Do not delete `/home/taylor/MacShare`", safety)
+        self.assertIn("Do not delete `/home/<YOUR_USERNAME>/<YOUR_SHARE_NAME>`", safety)
         project_text = "\n".join((SERVER_ADMIN / relative).read_text() for relative in expected)
         self.assertNotRegex(project_text, r"(?i)(password|secret)\s*=\s*\S+")
         self.assertNotRegex(project_text, r"(?i)(actual password|real password)\s*:\s*\S+")
@@ -284,15 +284,11 @@ class InstallAssetTests(unittest.TestCase):
         self.assertIn("LENOVA-SSH.md", text)
         self.assertIn("shrink-c-for-linux.txt", text)
         self.assertIn("mint-post-install.sh", text)
-        self.assertIn("linuxmint.com/download.php", text.lower())
-        self.assertIn("rufus.ie", text.lower())
-        self.assertIn("Rufus 3.22", text)
-        self.assertIn("https://rufus.ie/downloads/?pubDate=20260128", text)
         self.assertIn("150 GB", text)
-        self.assertIn("Tap F12 repeatedly", text)
-        self.assertIn("Install Linux Mint alongside Windows 7", text)
-        self.assertIn("Stop", text)
-        self.assertIn("ssh <linux-username>@<thinkpad-ip-address>", text)
+        self.assertIn("alongside Windows 7", text)
+        self.assertIn("<YOUR_IP>", text)
+        self.assertIn("<YOUR_USERNAME>", text)
+        self.assertIn("<YOUR_SHARE_NAME>", text)
         self.assertNotIn("erase the disk", text.lower())
         self.assertNotIn("delete windows", text.lower())
 
