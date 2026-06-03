@@ -2,16 +2,26 @@ Agent: Claude Code (claude-sonnet-4-6)
 Model: claude-sonnet-4-6
 Skills: athena, superpowers:test-driven-development, superpowers:executing-plans, superpowers:verification-before-completion
 
-Current goal: Auto-update + Mac notification — security patches apply automatically; Mac daily cron notifies when non-security updates are pending.
+Current goal: None (all three features complete and shipped).
 
-DONE
-- 2026-06-02 13:05 Bootstrapped ATHENA source-of-truth files for an empty repo and captured the user request. (Skills: athena)
-- 2026-06-02 13:05 T-001 Create failing validation tests for the requested scripts and runbook. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-02 13:05 T-002 Implement `thinkpad-linux-preflight.bat`. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-02 13:05 T-003 Implement `shrink-c-for-linux.txt`. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-02 13:05 T-004 Implement `mint-post-install.sh`. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-02 13:05 T-005 Write `README.md` with the manual workflow and safety stops. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-02 13:05 T-006 Run validation checks and sync ATHENA docs. (Skills: athena, superpowers:test-driven-development)
+ARCHIVE_SUMMARY
+
+Session 1: 20260602-thinkpad-linux-mint-dual-boot (CLOSED)
+- Bootstrapped 6 tasks (T-001–T-006) covering validation, script implementation, and documentation
+- All tests passing; verified batch scripts for safety (no partition-changing commands)
+- Feature marked Status: Done and shipped in PRD
+
+Session 2: 20260603-lenova-ssh-runbook (CLOSED)
+- Completed 2 tasks (T-001–T-002) creating dedicated SSH runbook and updating main docs
+- LENOVA-SSH.md covers SSH startup, connection methods, and admin access
+- Feature marked Status: Done and shipped in PRD
+
+Session 3: 20260603-thinkpad-server-admin (CLOSED)
+- Completed 16 tasks (T-001–T-015) covering server documentation, verification scripts, backup automation, remote desktop setup, and auto-update configuration
+- All 9/9 unit tests passing; live macOS Screen Sharing connection verified
+- VNC configured on display :2 (port 5902) because Xorg owns :0 and :1
+- Feature marked Status: Done and shipped in PRD
+- `/Volumes/T9/code/lenova/thinkpad-server-admin` is durable source; `/Volumes/MacShare/thinkpad-server-admin` is mirror only
 
 IN PROGRESS
 - None.
@@ -19,100 +29,4 @@ IN PROGRESS
 NEXT
 - None.
 
-DONE
-- 2026-06-03 13:41 T-013 DONE Add failing tests for auto-update assets. (Skills: athena, superpowers:test-driven-development, superpowers:verification-before-completion)
-- 2026-06-03 13:41 T-014 DONE Implement linux-setup-auto-updates.sh, mac-notify-updates.sh, docs/updates.md. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-03 13:41 T-015 DONE Verified 9/9 tests pass; synced ATHENA trail. (Skills: athena, superpowers:verification-before-completion)
-- 2026-06-03 T-016 DONE Mac wrappers: created mac-setup-auto-updates.sh (uploads linux-setup-auto-updates.sh + ssh -t pattern), updated mac-notify-updates.sh echo style, fixed overly-strict test assertion (assertNotRegex for password assignment, not bare word), updated docs/updates.md setup section to use ./scripts/mac-setup-auto-updates.sh; python3 -m unittest tests/test_install_assets.py -> 9/9 PASS. (Skills: athena, superpowers:verification-before-completion)
-
-DONE
-- 2026-06-02 13:32 T-007 Add a Windows 7 download helper for Linux Mint pages and Rufus 3.22. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-02 13:44 T-008 Update ATHENA docs and the Windows download helper to match the live Lenovo results. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-03 09:30 T-009 Create `LENOVA-SSH.md` and update the README plus ATHENA docs to point to it. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-03 00:00 T-001 Create the ThinkPad server-admin project files and safety-focused scripts under `/Volumes/MacShare/thinkpad-server-admin`. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-03 00:00 T-002 Run validation checks and sync ATHENA completion notes. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-03 12:26 T-003 Move the durable source copy of the ThinkPad server-admin project into `/Volumes/T9/code/lenova/thinkpad-server-admin` and document `/Volumes/MacShare` as a mirror only. (Skills: athena, superpowers:test-driven-development)
-- 2026-06-03 12:39 T-004 Add failing validation tests for the SSH-tunneled VNC remote desktop assets. (Skills: athena, superpowers:test-driven-development, superpowers:executing-plans)
-- 2026-06-03 12:39 T-005 Add the remote desktop runbook and helper scripts. (Skills: athena, superpowers:test-driven-development, superpowers:executing-plans)
-- 2026-06-03 12:39 T-006 Run validation checks and sync ATHENA completion notes. (Skills: athena, superpowers:test-driven-development, superpowers:executing-plans)
-- 2026-06-03 12:50 T-007 Fix VNC setup to use a remote TTY and fail fast on package installation errors. (Skills: athena, superpowers:systematic-debugging, superpowers:test-driven-development)
-- 2026-06-03 13:03 T-008 Fix Mac VNC opener to handle already-running VNC and password-authenticated tunnel startup. (Skills: athena, superpowers:systematic-debugging, superpowers:test-driven-development)
-- 2026-06-03 13:04 T-009 Update the docs for handoff so the primary opener, current `:1` state, and exact setup/open/verify commands are explicit. (Skills: athena, superpowers:systematic-debugging, superpowers:test-driven-development)
-- 2026-06-03 13:13 T-010 Document the observed `127.0.0.1:5901` Screen Sharing failure and first-response recovery checks. (Skills: athena, superpowers:systematic-debugging, superpowers:test-driven-development)
-- 2026-06-03 14:00 T-011 Close out the interrupted Codex session: capture CR-20260603-1400, remove stale IN PROGRESS entry, verify 8/8 tests still pass, and sync progress log. (Skills: athena, superpowers:verification-before-completion)
-
-Commands run
-- `mkdir -p docs/specs/20260602-thinkpad-linux-mint-dual-boot tests`
-- `python3 -m unittest tests/test_install_assets.py` -> failed first because the target files did not exist, then passed after implementation
-- `bash -n mint-post-install.sh` -> passed
-- `rg -n "^diskpart /s|^format$|^assign$|^create partition" shrink-c-for-linux.txt` -> no unsafe DiskPart commands found
-- `python3 -m unittest tests/test_install_assets.py` -> failed after adding the new download-helper test because the helper file and README updates were not present yet
-- `python3 -m unittest tests/test_install_assets.py` -> passed after adding `download-mint-and-rufus.bat` and README updates
-- `rg -n "diskpart|format |delete partition|bcdedit|bootrec" download-mint-and-rufus.bat` -> no risky commands found
-- `python3 -m unittest tests/test_install_assets.py` -> failed after updating expectations to the archived Rufus 3.22 path, because the helper and README still used the stale direct URL
-- `python3 -m unittest tests/test_install_assets.py` -> passed after updating the helper and docs to the archived Rufus 3.22 path
-- `rg -n "diskpart|format |delete partition|bcdedit|bootrec|bitsadmin|certutil" download-mint-and-rufus.bat` -> no risky commands or stale auto-download tools found
-- `python3 -m unittest tests/test_install_assets.py` -> failed because `LENOVA-SSH.md` did not exist yet
-- `python3 -m unittest tests/test_install_assets.py` -> passed after adding `LENOVA-SSH.md`
-- `bash -n mint-post-install.sh` -> passed after the SSH runbook update
-- `python3 -m unittest tests/test_install_assets.py` -> passed after final README and ATHENA sync
-- `bash -n mint-post-install.sh` -> passed after final README and ATHENA sync
-- `python3 -m unittest tests/test_install_assets.py` -> failed first because `/Volumes/MacShare/thinkpad-server-admin/README.md` did not exist yet
-- `mkdir -p /Volumes/MacShare/thinkpad-server-admin/docs /Volumes/MacShare/thinkpad-server-admin/configs /Volumes/MacShare/thinkpad-server-admin/scripts` -> created requested project directories on mounted MacShare
-- `chmod +x /Volumes/MacShare/thinkpad-server-admin/scripts/verify-server.sh /Volumes/MacShare/thinkpad-server-admin/scripts/backup-uptime-kuma.sh /Volumes/MacShare/thinkpad-server-admin/scripts/test-smb-share.sh` -> scripts made executable
-- `python3 -m unittest tests/test_install_assets.py` -> passed after project files and tests were corrected
-- `bash -n /Volumes/MacShare/thinkpad-server-admin/scripts/verify-server.sh` -> passed
-- `bash -n /Volumes/MacShare/thinkpad-server-admin/scripts/backup-uptime-kuma.sh` -> passed
-- `bash -n /Volumes/MacShare/thinkpad-server-admin/scripts/test-smb-share.sh` -> passed
-- `/Volumes/MacShare/thinkpad-server-admin/scripts/verify-server.sh` -> non-interactive read-only run: SSH-dependent checks failed because password prompts were disabled; HTTPS, Samba port 445, and `/Volumes/MacShare` passed
-- `python3 -m unittest tests/test_install_assets.py` -> failed first because `thinkpad-server-admin/README.md` did not exist under `/Volumes/T9/code/lenova`
-- `rsync -a --exclude='.DS_Store' --exclude='._*' /Volumes/MacShare/thinkpad-server-admin/ thinkpad-server-admin/` -> copied the existing SMB project into the durable repo path without Finder metadata
-- `python3 -m unittest tests/test_install_assets.py` -> passed after the durable repo copy and README source-of-truth update
-- `bash -n thinkpad-server-admin/scripts/verify-server.sh` -> passed
-- `bash -n thinkpad-server-admin/scripts/backup-uptime-kuma.sh` -> passed
-- `bash -n thinkpad-server-admin/scripts/test-smb-share.sh` -> passed
-- `ls -l thinkpad-server-admin/scripts` -> all three scripts are executable
-- `python3 -m unittest tests/test_install_assets.py` -> failed first because `thinkpad-server-admin/docs/remote-desktop.md` did not exist yet
-- `python3 -m unittest tests/test_install_assets.py` -> passed after adding the remote desktop runbook and helper scripts
-- `python3 -m unittest tests/test_install_assets.py` -> failed after tightening the Mac-source workflow test because the runbook still used `~/thinkpad-server-admin/scripts/linux-start-vnc.sh`
-- `python3 -m unittest tests/test_install_assets.py` -> passed after updating the runbook and `mac-open-vnc.sh` to stream Linux scripts over SSH with `bash -s`
-- `bash -n thinkpad-server-admin/scripts/linux-setup-vnc.sh` -> passed
-- `bash -n thinkpad-server-admin/scripts/linux-start-vnc.sh` -> passed
-- `bash -n thinkpad-server-admin/scripts/linux-stop-vnc.sh` -> passed
-- `bash -n thinkpad-server-admin/scripts/mac-open-vnc.sh` -> passed
-- `bash -n thinkpad-server-admin/scripts/verify-remote-desktop.sh` -> passed
-- `rg -n "ufw allow|0\\.0\\.0\\.0|password\\s*=|secret\\s*=|rm -rf|docker volume rm" thinkpad-server-admin/docs/remote-desktop.md thinkpad-server-admin/scripts` -> no forbidden patterns found
-- `ls -l thinkpad-server-admin/scripts/linux-setup-vnc.sh thinkpad-server-admin/scripts/linux-start-vnc.sh thinkpad-server-admin/scripts/linux-stop-vnc.sh thinkpad-server-admin/scripts/mac-open-vnc.sh thinkpad-server-admin/scripts/verify-remote-desktop.sh` -> all five new scripts are executable
-- Final verification: `python3 -m unittest tests/test_install_assets.py` -> passed with 8 tests
-- Final verification: `bash -n` on all five new remote desktop scripts -> passed
-- Final verification: forbidden-pattern scan for `ufw allow`, `0.0.0.0`, plaintext password assignment, `rm -rf`, and `docker volume rm` -> no matches
-- `python3 -m unittest tests/test_install_assets.py` -> failed after adding regression coverage because `scripts/mac-setup-vnc.sh` was missing
-- `python3 -m unittest tests.test_install_assets.InstallAssetTests.test_remote_desktop_assets_support_ssh_tunneled_mac_screen_sharing` -> failed after tightening setup wrapper expectations because the wrapper still used a separate `ssh mktemp` step
-- `python3 -m unittest tests/test_install_assets.py` -> passed after adding `mac-setup-vnc.sh`, documenting `./scripts/mac-setup-vnc.sh`, making `linux-setup-vnc.sh` fail fast, and removing the extra `ssh mktemp` prompt
-- `bash -n thinkpad-server-admin/scripts/mac-setup-vnc.sh` -> passed
-- `bash -n thinkpad-server-admin/scripts/linux-setup-vnc.sh` -> passed
-- `bash -n` on the other remote desktop scripts -> passed
-- `rg -n "ssh thinkpad 'bash -s' < scripts/linux-setup-vnc.sh|ufw allow|0\\.0\\.0\\.0|password\\s*=|secret\\s*=|rm -rf|docker volume rm" thinkpad-server-admin/docs/remote-desktop.md thinkpad-server-admin/scripts` -> no matches
-- `python3 -m unittest tests/test_install_assets.py` -> passed with 8 tests after the handoff-doc updates
-- `rg -n "mac-open-vnc|mac-setup-vnc|vncserver -list|Screen Sharing|127.0.0.1:5901|already running for display :1" thinkpad-server-admin/docs thinkpad-server-admin/README.md` -> current handoff wording present
-- `sed -n '1,220p' docs/progress.txt` -> confirmed current goal and task state are updated for handoff
-- `python3 -m unittest tests.test_install_assets.InstallAssetTests.test_remote_desktop_assets_support_ssh_tunneled_mac_screen_sharing` -> failed first because `mac-open-vnc.sh` still used `ssh -N ... &` instead of foreground-authenticated backgrounding
-- `python3 -m unittest tests.test_install_assets.InstallAssetTests.test_remote_desktop_assets_support_ssh_tunneled_mac_screen_sharing` -> passed after `mac-open-vnc.sh` switched to `ssh -fN -o ExitOnForwardFailure=yes`, local tunnel probing, and explicit Screen Sharing open
-- `python3 -m unittest tests/test_install_assets.py` -> passed with 8 tests
-- `bash -n` on all remote desktop scripts -> passed
-- `rg -n "ssh thinkpad 'bash -s' < scripts/linux-setup-vnc.sh|ufw allow|0\\.0\\.0\\.0|password\\s*=|secret\\s*=|rm -rf|docker volume rm" thinkpad-server-admin/docs/remote-desktop.md thinkpad-server-admin/scripts` -> no matches
-
-- 2026-06-03 14:00 Claude Code session: captured CR-20260603-1400 (resume after Codex token exhaustion)
-- `python3 -m unittest tests/test_install_assets.py` -> 8/8 passed
-- `bash -n` on all remote desktop scripts -> passed
-- `rg` confirms exact failure text and recovery commands present in all three docs
-- Cleaned up stale IN PROGRESS entry; T-010 was already in DONE from prior Codex session
-- 2026-06-03 14:00 T-012 DONE Fix VNC display from `:1`/`5901` to `:2`/`5902`: root cause confirmed (Xorg PID 3751 owns `:0` and `:1`); ssh-copy-id set up for key auth; updated linux-start-vnc.sh, linux-stop-vnc.sh, mac-open-vnc.sh, verify-remote-desktop.sh, remote-desktop.md, current-state.md, recovery.md, test_install_assets.py; `python3 -m unittest tests/test_install_assets.py` -> 8/8 PASS; user confirmed live Mac Screen Sharing connection at vnc://127.0.0.1:5902. (Skills: athena, superpowers:verification-before-completion)
-
-Risks / open questions
-- No Windows 7 runtime is available in this session, so the batch script will be validated by syntax-safe static checks and content assertions rather than live execution on Win7.
-- `./scripts/owl write-memory` could not be run because this repo does not contain a `scripts/owl` helper yet.
-- Live Lenovo results now confirm that entering `153600` MB produced about `150 GB` unallocated space and that the working Rufus 3.22 path is the archived downloads index instead of the old direct EXE URL.
-- `verify-server.sh` was run non-interactively from Codex. SSH password prompts are disabled in that mode, so SSH, Docker, Uptime Kuma, and Caddy service checks can show `FAIL` even when Taylor can complete `ssh thinkpad` interactively with the Lenovo Linux password.
-- `/Volumes/MacShare/thinkpad-server-admin` still exists but is not the source of truth; it is only a mirror that can be refreshed from `/Volumes/T9/code/lenova/thinkpad-server-admin`.
-- The original streamed setup command failed because it did not provide a remote TTY for `sudo` or `vncpasswd`. Use `./scripts/mac-setup-vnc.sh` from a normal Mac terminal instead.
+For full session detail, refer to git log or archived feature specs in docs/specs/.
