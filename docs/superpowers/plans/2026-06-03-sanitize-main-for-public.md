@@ -17,7 +17,7 @@
 - [ ] **Step 1: Confirm you are on main**
 
 ```bash
-git -C /Volumes/T9/code/lenova branch
+git -C <YOUR_REPO> branch
 ```
 
 Expected: `* main` is the current branch.
@@ -25,7 +25,7 @@ Expected: `* main` is the current branch.
 - [ ] **Step 2: Create and push the preservation branch**
 
 ```bash
-git -C /Volumes/T9/code/lenova branch taylor-config
+git -C <YOUR_REPO> branch taylor-config
 ```
 
 Expected: no output (branch created silently).
@@ -33,7 +33,7 @@ Expected: no output (branch created silently).
 - [ ] **Step 3: Verify branch exists**
 
 ```bash
-git -C /Volumes/T9/code/lenova branch
+git -C <YOUR_REPO> branch
 ```
 
 Expected:
@@ -54,19 +54,19 @@ Expected:
 - [ ] **Step 1: Replace IP in mac-ssh-config-snippet**
 
 ```bash
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/configs/mac-ssh-config-snippet
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/thinkpad-server-admin/configs/mac-ssh-config-snippet
 ```
 
 - [ ] **Step 2: Replace username in mac-ssh-config-snippet**
 
 ```bash
-sed -i '' 's/User taylor/User <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/configs/mac-ssh-config-snippet
+sed -i '' 's/User taylor/User <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/configs/mac-ssh-config-snippet
 ```
 
 - [ ] **Step 3: Verify mac-ssh-config-snippet**
 
 ```bash
-cat /Volumes/T9/code/lenova/thinkpad-server-admin/configs/mac-ssh-config-snippet
+cat <YOUR_REPO>/thinkpad-server-admin/configs/mac-ssh-config-snippet
 ```
 
 Expected:
@@ -79,13 +79,13 @@ Host thinkpad
 - [ ] **Step 4: Replace IP in Caddyfile**
 
 ```bash
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/configs/Caddyfile
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/thinkpad-server-admin/configs/Caddyfile
 ```
 
 - [ ] **Step 5: Verify Caddyfile**
 
 ```bash
-cat /Volumes/T9/code/lenova/thinkpad-server-admin/configs/Caddyfile
+cat <YOUR_REPO>/thinkpad-server-admin/configs/Caddyfile
 ```
 
 Expected:
@@ -99,20 +99,20 @@ https://<YOUR_IP> {
 - [ ] **Step 6: Replace share name in smb-MacShare.conf**
 
 ```bash
-sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/configs/smb-MacShare.conf
+sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' <YOUR_REPO>/thinkpad-server-admin/configs/smb-MacShare.conf
 ```
 
 - [ ] **Step 7: Replace username in smb-MacShare.conf**
 
 ```bash
-sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' /Volumes/T9/code/lenova/thinkpad-server-admin/configs/smb-MacShare.conf
-sed -i '' 's/valid users = taylor/valid users = <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/configs/smb-MacShare.conf
+sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' <YOUR_REPO>/thinkpad-server-admin/configs/smb-MacShare.conf
+sed -i '' 's/valid users = taylor/valid users = <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/configs/smb-MacShare.conf
 ```
 
 - [ ] **Step 8: Verify smb-MacShare.conf**
 
 ```bash
-cat /Volumes/T9/code/lenova/thinkpad-server-admin/configs/smb-MacShare.conf
+cat <YOUR_REPO>/thinkpad-server-admin/configs/smb-MacShare.conf
 ```
 
 Expected:
@@ -130,8 +130,8 @@ directory mask = 0755
 - [ ] **Step 9: Commit**
 
 ```bash
-git -C /Volumes/T9/code/lenova add thinkpad-server-admin/configs/
-git -C /Volumes/T9/code/lenova commit -m "chore: sanitize config files — replace personal identifiers with placeholders"
+git -C <YOUR_REPO> add thinkpad-server-admin/configs/
+git -C <YOUR_REPO> commit -m "chore: sanitize config files — replace personal identifiers with placeholders"
 ```
 
 ---
@@ -151,41 +151,41 @@ git -C /Volumes/T9/code/lenova commit -m "chore: sanitize config files — repla
 - [ ] **Step 1: Replace /home/taylor/ in backup-uptime-kuma.sh**
 
 ```bash
-sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/backup-uptime-kuma.sh
-sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/backup-uptime-kuma.sh
+sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' <YOUR_REPO>/thinkpad-server-admin/scripts/backup-uptime-kuma.sh
+sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/backup-uptime-kuma.sh
 ```
 
 - [ ] **Step 2: Replace username reference in linux-setup-vnc.sh**
 
 ```bash
-sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/linux-setup-vnc.sh
+sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/linux-setup-vnc.sh
 ```
 
 - [ ] **Step 3: Replace identifiers in test-smb-share.sh**
 
 ```bash
-sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/test-smb-share.sh
-sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/test-smb-share.sh
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/test-smb-share.sh
-sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/test-smb-share.sh
+sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/test-smb-share.sh
+sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' <YOUR_REPO>/thinkpad-server-admin/scripts/test-smb-share.sh
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/test-smb-share.sh
+sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/test-smb-share.sh
 ```
 
 - [ ] **Step 4: Replace identifiers in verify-server.sh**
 
 ```bash
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/verify-server.sh
-sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/verify-server.sh
-sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/verify-server.sh
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/verify-server.sh
+sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/verify-server.sh
+sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/scripts/verify-server.sh
 ```
 
 - [ ] **Step 5: Replace username in verify-remote-desktop.sh, mac-setup-vnc.sh, mac-open-vnc.sh, mac-setup-auto-updates.sh**
 
 ```bash
 for f in \
-  /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/verify-remote-desktop.sh \
-  /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/mac-setup-vnc.sh \
-  /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/mac-open-vnc.sh \
-  /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/mac-setup-auto-updates.sh; do
+  <YOUR_REPO>/thinkpad-server-admin/scripts/verify-remote-desktop.sh \
+  <YOUR_REPO>/thinkpad-server-admin/scripts/mac-setup-vnc.sh \
+  <YOUR_REPO>/thinkpad-server-admin/scripts/mac-open-vnc.sh \
+  <YOUR_REPO>/thinkpad-server-admin/scripts/mac-setup-auto-updates.sh; do
   sed -i '' 's/user taylor/user <YOUR_USERNAME>/g' "$f"
 done
 ```
@@ -194,7 +194,7 @@ done
 
 ```bash
 grep -rn "192\.168\.1\.60\|taylor-ThinkPad\|/home/taylor\|\bvalid users = taylor\b\|MacShare" \
-  /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/
+  <YOUR_REPO>/thinkpad-server-admin/scripts/
 ```
 
 Expected: no output (zero matches).
@@ -202,7 +202,7 @@ Expected: no output (zero matches).
 - [ ] **Step 7: Check for any remaining bare `taylor` as username in scripts**
 
 ```bash
-grep -n "\btaylor\b" /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/*.sh
+grep -n "\btaylor\b" <YOUR_REPO>/thinkpad-server-admin/scripts/*.sh
 ```
 
 Expected: no output. If any lines appear, inspect and apply `sed -i '' 's/\btaylor\b/<YOUR_USERNAME>/g'` to that specific file.
@@ -210,8 +210,8 @@ Expected: no output. If any lines appear, inspect and apply `sed -i '' 's/\btayl
 - [ ] **Step 8: Commit**
 
 ```bash
-git -C /Volumes/T9/code/lenova add thinkpad-server-admin/scripts/
-git -C /Volumes/T9/code/lenova commit -m "chore: sanitize scripts — replace personal identifiers with placeholders"
+git -C <YOUR_REPO> add thinkpad-server-admin/scripts/
+git -C <YOUR_REPO> commit -m "chore: sanitize scripts — replace personal identifiers with placeholders"
 ```
 
 ---
@@ -230,20 +230,20 @@ git -C /Volumes/T9/code/lenova commit -m "chore: sanitize scripts — replace pe
 Run in order (hostname before username to avoid partial replacement):
 
 ```bash
-sed -i '' 's/taylor-ThinkPad-T430/<YOUR_HOSTNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
-sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
-sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
-sed -i '' 's/User taylor/User <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
-sed -i '' "s/taylor@/<YOUR_USERNAME>@/g" /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
-sed -i '' 's/for taylor/for <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
-sed -i '' "s/Taylor's/your/g" /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
+sed -i '' 's/taylor-ThinkPad-T430/<YOUR_HOSTNAME>/g' <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
+sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
+sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
+sed -i '' 's/User taylor/User <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
+sed -i '' "s/taylor@/<YOUR_USERNAME>@/g" <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
+sed -i '' 's/for taylor/for <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
+sed -i '' "s/Taylor's/your/g" <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
 ```
 
 - [ ] **Step 2: Verify current-state.md**
 
 ```bash
-grep -n "taylor\|192\.168\.1\.60\|MacShare\|ThinkPad-T430" /Volumes/T9/code/lenova/thinkpad-server-admin/docs/current-state.md
+grep -n "taylor\|192\.168\.1\.60\|MacShare\|ThinkPad-T430" <YOUR_REPO>/thinkpad-server-admin/docs/current-state.md
 ```
 
 Expected: no output. If any lines appear, inspect and fix manually with Edit.
@@ -251,16 +251,16 @@ Expected: no output. If any lines appear, inspect and fix manually with Edit.
 - [ ] **Step 3: Sanitize recovery.md**
 
 ```bash
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/recovery.md
-sed -i '' "s/taylor@/<YOUR_USERNAME>@/g" /Volumes/T9/code/lenova/thinkpad-server-admin/docs/recovery.md
-sed -i '' 's/user `taylor`/user `<YOUR_USERNAME>`/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/recovery.md
-sed -i '' 's/for taylor/for <YOUR_USERNAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/recovery.md
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/thinkpad-server-admin/docs/recovery.md
+sed -i '' "s/taylor@/<YOUR_USERNAME>@/g" <YOUR_REPO>/thinkpad-server-admin/docs/recovery.md
+sed -i '' 's/user `taylor`/user `<YOUR_USERNAME>`/g' <YOUR_REPO>/thinkpad-server-admin/docs/recovery.md
+sed -i '' 's/for taylor/for <YOUR_USERNAME>/g' <YOUR_REPO>/thinkpad-server-admin/docs/recovery.md
 ```
 
 - [ ] **Step 4: Verify recovery.md**
 
 ```bash
-grep -n "taylor\|192\.168\.1\.60" /Volumes/T9/code/lenova/thinkpad-server-admin/docs/recovery.md
+grep -n "taylor\|192\.168\.1\.60" <YOUR_REPO>/thinkpad-server-admin/docs/recovery.md
 ```
 
 Expected: no output.
@@ -268,30 +268,30 @@ Expected: no output.
 - [ ] **Step 5: Sanitize do-not-delete.md**
 
 ```bash
-sed -i '' 's/asking Taylor first/asking the repo owner first/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/do-not-delete.md
-sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/do-not-delete.md
-sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/do-not-delete.md
-sed -i '' 's/Show Taylor the/Show the owner the/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/do-not-delete.md
+sed -i '' 's/asking Taylor first/asking the repo owner first/g' <YOUR_REPO>/thinkpad-server-admin/docs/do-not-delete.md
+sed -i '' 's/\/home\/taylor\//\/home\/<YOUR_USERNAME>\//g' <YOUR_REPO>/thinkpad-server-admin/docs/do-not-delete.md
+sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' <YOUR_REPO>/thinkpad-server-admin/docs/do-not-delete.md
+sed -i '' 's/Show Taylor the/Show the owner the/g' <YOUR_REPO>/thinkpad-server-admin/docs/do-not-delete.md
 ```
 
 - [ ] **Step 6: Sanitize remote-desktop.md**
 
 ```bash
-sed -i '' 's/user `taylor`/user `<YOUR_USERNAME>`/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/remote-desktop.md
-sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/remote-desktop.md
+sed -i '' 's/user `taylor`/user `<YOUR_USERNAME>`/g' <YOUR_REPO>/thinkpad-server-admin/docs/remote-desktop.md
+sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' <YOUR_REPO>/thinkpad-server-admin/docs/remote-desktop.md
 ```
 
 - [ ] **Step 7: Sanitize updates.md**
 
 ```bash
-sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/docs/updates.md
+sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' <YOUR_REPO>/thinkpad-server-admin/docs/updates.md
 ```
 
 - [ ] **Step 8: Verify all docs**
 
 ```bash
 grep -rn "taylor\|192\.168\.1\.60\|MacShare\|ThinkPad-T430\|Volumes\/T9" \
-  /Volumes/T9/code/lenova/thinkpad-server-admin/docs/
+  <YOUR_REPO>/thinkpad-server-admin/docs/
 ```
 
 Expected: no output. If matches appear, open the relevant file and fix with Edit.
@@ -299,8 +299,8 @@ Expected: no output. If matches appear, open the relevant file and fix with Edit
 - [ ] **Step 9: Commit**
 
 ```bash
-git -C /Volumes/T9/code/lenova add thinkpad-server-admin/docs/
-git -C /Volumes/T9/code/lenova commit -m "chore: sanitize server-admin docs — replace personal identifiers with placeholders"
+git -C <YOUR_REPO> add thinkpad-server-admin/docs/
+git -C <YOUR_REPO> commit -m "chore: sanitize server-admin docs — replace personal identifiers with placeholders"
 ```
 
 ---
@@ -315,17 +315,17 @@ git -C /Volumes/T9/code/lenova commit -m "chore: sanitize server-admin docs — 
 - [ ] **Step 1: Sanitize thinkpad-server-admin/README.md**
 
 ```bash
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/README.md
-sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/README.md
-sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' /Volumes/T9/code/lenova/thinkpad-server-admin/README.md
-sed -i '' "s/Taylor's/your/g" /Volumes/T9/code/lenova/thinkpad-server-admin/README.md
-sed -i '' 's/asking Taylor first/asking the repo owner first/g' /Volumes/T9/code/lenova/thinkpad-server-admin/README.md
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/thinkpad-server-admin/README.md
+sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' <YOUR_REPO>/thinkpad-server-admin/README.md
+sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' <YOUR_REPO>/thinkpad-server-admin/README.md
+sed -i '' "s/Taylor's/your/g" <YOUR_REPO>/thinkpad-server-admin/README.md
+sed -i '' 's/asking Taylor first/asking the repo owner first/g' <YOUR_REPO>/thinkpad-server-admin/README.md
 ```
 
 - [ ] **Step 2: Verify thinkpad-server-admin/README.md**
 
 ```bash
-grep -n "taylor\|192\.168\.1\.60\|Volumes\/T9" /Volumes/T9/code/lenova/thinkpad-server-admin/README.md
+grep -n "taylor\|192\.168\.1\.60\|Volumes\/T9" <YOUR_REPO>/thinkpad-server-admin/README.md
 ```
 
 Expected: no output.
@@ -333,15 +333,15 @@ Expected: no output.
 - [ ] **Step 3: Sanitize root README.md**
 
 ```bash
-sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' /Volumes/T9/code/lenova/README.md
-sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' /Volumes/T9/code/lenova/README.md
-sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' /Volumes/T9/code/lenova/README.md
+sed -i '' 's/192\.168\.1\.60/<YOUR_IP>/g' <YOUR_REPO>/README.md
+sed -i '' 's/MacShare/<YOUR_SHARE_NAME>/g' <YOUR_REPO>/README.md
+sed -i '' 's/\/Volumes\/T9\/code\/lenova/<YOUR_REPO_PATH>/g' <YOUR_REPO>/README.md
 ```
 
 - [ ] **Step 4: Verify root README.md**
 
 ```bash
-grep -n "taylor\|192\.168\.1\.60\|Volumes\/T9" /Volumes/T9/code/lenova/README.md
+grep -n "taylor\|192\.168\.1\.60\|Volumes\/T9" <YOUR_REPO>/README.md
 ```
 
 Expected: no output.
@@ -349,7 +349,7 @@ Expected: no output.
 - [ ] **Step 5: Verify LENOVA-SSH.md is already clean**
 
 ```bash
-grep -n "taylor\|192\.168\.1\.60" /Volumes/T9/code/lenova/LENOVA-SSH.md
+grep -n "taylor\|192\.168\.1\.60" <YOUR_REPO>/LENOVA-SSH.md
 ```
 
 Expected: no output (this file already uses `<linux-username>` and `<thinkpad-ip-address>` placeholders). If any matches appear, apply the same `sed` pattern as above.
@@ -357,8 +357,8 @@ Expected: no output (this file already uses `<linux-username>` and `<thinkpad-ip
 - [ ] **Step 6: Commit**
 
 ```bash
-git -C /Volumes/T9/code/lenova add thinkpad-server-admin/README.md README.md LENOVA-SSH.md
-git -C /Volumes/T9/code/lenova commit -m "chore: sanitize READMEs and SSH runbook — replace personal identifiers with placeholders"
+git -C <YOUR_REPO> add thinkpad-server-admin/README.md README.md LENOVA-SSH.md
+git -C <YOUR_REPO> commit -m "chore: sanitize READMEs and SSH runbook — replace personal identifiers with placeholders"
 ```
 
 ---
@@ -370,7 +370,7 @@ git -C /Volumes/T9/code/lenova commit -m "chore: sanitize READMEs and SSH runboo
 - [ ] **Step 1: Full repo scan for IP**
 
 ```bash
-grep -rn "192\.168\.1\.60" /Volumes/T9/code/lenova \
+grep -rn "192\.168\.1\.60" <YOUR_REPO> \
   --include="*.sh" --include="*.md" --include="*.conf" --include="*.bat" --include="*.txt" \
   --exclude-dir=".git" --exclude-dir="__pycache__" --exclude-dir="docs/specs" \
   --exclude-dir="docs/superpowers"
@@ -381,7 +381,7 @@ Expected: no output.
 - [ ] **Step 2: Full repo scan for Linux username**
 
 ```bash
-grep -rn "\btaylor\b" /Volumes/T9/code/lenova \
+grep -rn "\btaylor\b" <YOUR_REPO> \
   --include="*.sh" --include="*.conf" \
   --exclude-dir=".git" --exclude-dir="__pycache__"
 ```
@@ -391,7 +391,7 @@ Expected: no output.
 - [ ] **Step 3: Full repo scan for hostname**
 
 ```bash
-grep -rn "taylor-ThinkPad-T430" /Volumes/T9/code/lenova \
+grep -rn "taylor-ThinkPad-T430" <YOUR_REPO> \
   --exclude-dir=".git" --exclude-dir="__pycache__"
 ```
 
@@ -400,7 +400,7 @@ Expected: no output.
 - [ ] **Step 4: Confirm taylor-config branch is unmodified**
 
 ```bash
-git -C /Volumes/T9/code/lenova diff main taylor-config -- thinkpad-server-admin/configs/mac-ssh-config-snippet
+git -C <YOUR_REPO> diff main taylor-config -- thinkpad-server-admin/configs/mac-ssh-config-snippet
 ```
 
 Expected: output showing the personal values (`192.168.1.60`, `taylor`) still present on `taylor-config` and placeholders on `main`.
@@ -408,7 +408,7 @@ Expected: output showing the personal values (`192.168.1.60`, `taylor`) still pr
 - [ ] **Step 5: Show final git log**
 
 ```bash
-git -C /Volumes/T9/code/lenova log --oneline -8
+git -C <YOUR_REPO> log --oneline -8
 ```
 
 Expected: 4 new commits on top of the design-spec commit, each labeled `chore: sanitize ...`.
