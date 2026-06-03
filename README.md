@@ -49,6 +49,19 @@ These files were used to install Linux Mint alongside Windows 7. The install is 
 | `shrink-c-for-linux.txt` | Manual DiskPart commands to shrink C: |
 | `mint-post-install.sh` | Post-install: updates, SSH, Git, dev tools, Avahi |
 
+#### Install Sequence
+
+1. On Windows: run `thinkpad-linux-preflight.bat`. It writes a `ThinkPad-Linux-Install-Info` folder to the Desktop with hardware details and safe shrink recommendations.
+2. On Windows: run `download-mint-and-rufus.bat`. It opens the official Linux Mint XFCE download page and the Rufus archive page. Download **Rufus 3.22** (the last version with full Windows 7 BIOS compatibility) and the Linux Mint XFCE ISO.
+3. On Windows: run DiskPart manually with the commands in `shrink-c-for-linux.txt`. Use `153600` MB to free about 150 GB. Leave the space **unallocated** — do not create or format a partition.
+4. Insert the USB drive. Open Rufus. Select the ISO. Set **Partition scheme: MBR** and **Target system: BIOS (or UEFI-CSM)**. File system: FAT32. Click Start and write in ISO mode.
+5. Reboot the ThinkPad. Tap **F12** repeatedly at the ThinkPad logo to reach the boot menu. Select the USB drive.
+6. The system boots into the Linux Mint live environment. Double-click **Install Linux Mint** on the desktop.
+7. Work through the installer. At the installation type screen, select **Install Linux Mint alongside Windows 7**. **Stop here if this option is not shown** — do not continue with "Erase disk" or "Something else" without reviewing the partition state first.
+8. The installer shows a partition map. Drag the divider or accept the default to assign the unallocated space to Linux Mint. Confirm and proceed.
+9. Complete the installer (timezone, user account, password). When it finishes, remove the USB and reboot.
+10. Boot into Linux Mint. Run `mint-post-install.sh` to apply updates, install tools, enable SSH and Avahi, and print the SSH connection command.
+
 Observed result: entering `153600` MB in Disk Management produced ~150 GB of unallocated space for Linux.
 
 ---

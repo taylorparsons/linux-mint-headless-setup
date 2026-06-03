@@ -28,6 +28,8 @@
 - Provide a repo `README.md` that gives the scripts first, then the exact order of operations, official download links, Rufus settings, manual boot/install steps, and a hard stop if the installer does not offer “Install Linux Mint alongside Windows 7”. (Sources: CR-20260602-1253; D-20260602-1258)
 - Record the observed field result that shrinking by `153600` MB on the target ThinkPad produced about `150 GB` of unallocated space, so the runbook reflects the actual tested Windows flow. (Sources: CR-20260602-1342; D-20260602-1344)
 - Provide a dedicated root markdown file named `LENOVA-SSH.md` that explains how to SSH from the Mac to the Lenovo, how to enable SSH on the Lenovo, and how to use `sudo` for full admin privileges without enabling root SSH login. (Sources: CR-20260603-0930; D-20260603-0932)
+- Extend `LENOVA-SSH.md` with a key-based auth setup section covering: router static IP reservation note, `ssh-keygen -t ed25519` if no key exists, `ssh-copy-id` to push the key, adding the `Host thinkpad` alias in `~/.ssh/config`, and verifying passwordless `ssh thinkpad`. (Sources: CR-20260603-1600)
+- Extend `README.md` with a numbered install sequence under Dual-Boot Setup: Rufus USB write settings (MBR, BIOS target, FAT32, ISO mode), F12 boot menu, booting into the live environment, choosing "Install alongside Windows 7" with a hard stop if that option is absent, assigning unallocated space, completing the install, rebooting, and running `mint-post-install.sh`. (Sources: CR-20260603-1600)
 
 ## Shipped
 
@@ -37,4 +39,4 @@
 
 ## Backlog
 
-- None.
+- Document all missing setup steps in `README.md` (install sequence steps 6-11) and `LENOVA-SSH.md` (SSH key setup). (Sources: CR-20260603-1600)

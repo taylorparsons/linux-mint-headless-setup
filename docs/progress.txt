@@ -2,7 +2,7 @@ Agent: Claude Code (claude-sonnet-4-6)
 Model: claude-sonnet-4-6
 Skills: athena, superpowers:test-driven-development, superpowers:executing-plans, superpowers:verification-before-completion
 
-Current goal: None (all three features complete and shipped).
+Current goal: Document all missing setup steps (CR-20260603-1600).
 
 ARCHIVE_SUMMARY
 
@@ -25,6 +25,10 @@ Session 3: 20260603-thinkpad-server-admin (CLOSED)
 
 IN PROGRESS
 - None.
+
+DONE
+- T-DOC-001: Add install sequence steps 6-11 to README.md (Rufus settings, F12, live boot, installer choice, unallocated space, post-install). (Skills: athena) — 2026-06-03
+- T-DOC-002: Add SSH key setup section to LENOVA-SSH.md (router static IP note, ssh-keygen, ssh-copy-id, Host alias, verify ssh thinkpad). (Skills: athena) — 2026-06-03
 
 NEXT
 - None.

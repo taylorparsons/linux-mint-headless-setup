@@ -265,3 +265,16 @@
   > Verification:
   > - python3 -m unittest tests/test_install_assets.py -> 8/8 passing
   > - rg confirms the exact failure text and recovery checks are in the docs
+
+## CR-20260603-1600
+- Timestamp: 2026-06-03 16:00 America/Los_Angeles
+- Request:
+  > yes I want all steps accounted for
+  >
+  > Context: after reviewing a full numbered step list of the dual-boot + SSH setup, user confirmed that
+  > all missing steps should be added to the repo docs. Gap identified:
+  > - README.md missing steps 6-11: Rufus USB write settings, F12 boot menu, booting from USB into
+  >   live environment, "Install alongside Windows 7" choice, pointing installer at unallocated space,
+  >   completing install and rebooting.
+  > - LENOVA-SSH.md missing steps 13/14/16/18: router static IP reservation note, ssh-keygen on Mac,
+  >   ssh-copy-id to Lenovo, verifying passwordless ssh thinkpad.
