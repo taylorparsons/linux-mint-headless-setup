@@ -1,136 +1,89 @@
-# Lenovo ThinkPad Linux Mint XFCE Dual-Boot Helper
+# Lenova — ThinkPad Admin Repo
 
-## Scripts
+Admin toolkit for Taylor's Lenovo ThinkPad T430 running Linux Mint XFCE as a dual-boot local server.
 
-### `thinkpad-linux-preflight.bat`
-- Creates `ThinkPad-Linux-Install-Info` on the Windows Desktop.
-- Saves hardware and disk reports there.
-- Checks C: free space.
-- Recommends a manual shrink size.
-- Prints Disk Management steps.
-- Does not change partitions.
+Linux Mint is installed and running. The ThinkPad is live on the LAN as a headless server.
 
-### `download-mint-and-rufus.bat`
-- Creates `Linux-Mint-Download` on the Windows Desktop.
-- Opens the official Linux Mint XFCE, Rufus, and archived Rufus 3.22 pages.
-- Points you to the working Windows 7-compatible `Rufus 3.22` archive entry.
-- Saves a status file with the links and result.
-- Does not change partitions or boot settings.
+## Quick Access
 
-### `shrink-c-for-linux.txt`
-- Manual DiskPart commands only.
-- Default shrink is `102400` MB.
-- Includes a `153600` MB alternative as a comment.
-- Leaves the new space unallocated.
-- Does not create or format partitions.
-
-### `mint-post-install.sh`
-- Updates Linux Mint packages.
-- Installs SSH, Git, curl, wget, htop, neofetch, build tools, and Avahi.
-- Enables SSH and Avahi.
-- Prints SSH commands for your MacBook.
-
-### `LENOVA-SSH.md`
-- Dedicated SSH runbook for Mac-to-Lenovo access.
-- Shows how to enable SSH on the Lenovo.
-- Shows the IP and `.local` connection commands.
-- Shows how to use `sudo` for admin access.
-
-## Exact Order To Run
-
-1. In Windows 7, copy `thinkpad-linux-preflight.bat` to the ThinkPad.
-2. Double-click `thinkpad-linux-preflight.bat`.
-3. Open the Desktop folder `ThinkPad-Linux-Install-Info` and review the saved reports.
-4. Double-click `download-mint-and-rufus.bat`.
-5. Let it open the official download pages, including the Rufus 3.22 archive page.
-6. Open the Desktop folder `Linux-Mint-Download` and confirm `download-status.txt` was created.
-7. If the script warns that free space is under `200 GB`, stop and clean up files before doing anything else.
-8. If you want Linux space now, stop here and confirm before running any partition step.
-9. If you choose to shrink C: manually, use Disk Management first:
-   - Press `Windows + R`
-   - Type `diskmgmt.msc`
-   - Right-click `C:`
-   - Click `Shrink Volume...`
-   - Enter `102400` for about `100 GB` or `153600` for about `150 GB`
-   - Leave the result as **Unallocated**
-   - Do not create a new partition in Windows
-10. If you choose the optional DiskPart route instead, read `shrink-c-for-linux.txt` first and only then run:
-
-```bat
-diskpart /s shrink-c-for-linux.txt
+```sh
+ssh thinkpad                        # SSH into the Lenovo
+cd thinkpad-server-admin            # server admin scripts and docs
 ```
 
-11. Create the Linux Mint USB.
-12. Boot the ThinkPad from the USB and test the live session.
-13. Install Linux Mint only if the installer shows **Install Linux Mint alongside Windows 7**.
-14. After Linux Mint is installed, run `mint-post-install.sh`.
-15. From your MacBook, connect with SSH.
-16. If you want a shorter SSH-only guide, open `LENOVA-SSH.md`.
+See `LENOVA-SSH.md` for SSH setup details and `thinkpad-server-admin/README.md` for server operations.
 
-Observed result on the target ThinkPad:
-- Entering `153600` in Disk Management produced about `150 GB` of **Unallocated** space.
+---
 
-## Linux Mint USB Creation On Windows 7
+## What's In This Repo
 
-1. Run `download-mint-and-rufus.bat` first.
-2. Download Linux Mint XFCE 64-bit from:
-   - `https://www.linuxmint.com/download.php`
-   - `https://www.linuxmint.com/edition.php?id=327`
-3. Download Rufus from:
-   - `https://rufus.ie/`
-   - `https://rufus.ie/downloads/?pubDate=20260128`
-4. Use **Rufus 3.22** on Windows 7.
-   - As of June 2, 2026, newer Rufus builds target Windows 8 or newer.
-   - If an older direct `rufus-3.22.exe` link returns `404`, use the archived downloads index above and click the `Rufus 3.22` entry there.
-5. Insert the USB flash drive.
-6. Open Rufus.
-7. Choose the Linux Mint XFCE ISO.
-8. Use these Rufus settings:
-   - Partition scheme: `MBR`
-   - Target system: `BIOS or UEFI`
-   - File system: `FAT32` if available
-   - If Rufus asks how to write the image, choose `ISO Image mode`
-9. Click `Start`.
-10. Wait for Rufus to finish.
-11. Verify the USB is ready:
-    - Rufus shows `READY`
-    - The USB now has visible boot files
-    - Safely eject the USB
+### Server Admin (active use)
 
-## Manual Boot Steps
+`thinkpad-server-admin/` — daily-use scripts, configs, and docs for the running server.
 
-1. Shut down the Lenovo.
-2. Insert the Linux Mint USB.
-3. Power on the laptop.
-4. Tap F12 repeatedly.
-5. Choose `USB HDD` or `USB Storage`.
-6. Start the Linux Mint live session.
-7. Test Wi-Fi, keyboard, trackpad, screen, and sound.
-8. Click `Install Linux Mint`.
-9. Choose **Install Linux Mint alongside Windows 7** if available.
-10. Stop if the installer does not show that option.
+| Script | What it does |
+|---|---|
+| `scripts/verify-server.sh` | Read-only health check (SSH, Docker, SMB, HTTPS) |
+| `scripts/backup-uptime-kuma.sh` | Timestamped Uptime Kuma Docker volume backup |
+| `scripts/test-smb-share.sh` | Bidirectional SMB share test |
+| `scripts/mac-setup-vnc.sh` | One-time VNC setup on Lenovo (runs with ssh -t) |
+| `scripts/mac-open-vnc.sh` | Open macOS Screen Sharing via SSH tunnel |
+| `scripts/verify-remote-desktop.sh` | Check VNC service, password file, and tunnel |
+| `scripts/mac-setup-auto-updates.sh` | One-time auto-update setup on Lenovo |
+| `scripts/mac-notify-updates.sh` | Check for pending updates and send Mac notification |
 
-Do not wipe the drive. Do not delete partitions. Do not format the Windows partition.
+Docs: `docs/current-state.md`, `docs/remote-desktop.md`, `docs/updates.md`, `docs/recovery.md`, `docs/do-not-delete.md`
 
-## Linux Mint Post-Install
+### SSH Runbook
 
-1. Copy `mint-post-install.sh` onto the new Linux Mint system.
-2. Open Terminal.
-3. Run:
+`LENOVA-SSH.md` — how to enable SSH on the Lenovo, connect from macOS, and use sudo.
 
-```bash
-chmod +x mint-post-install.sh
-./mint-post-install.sh
-```
+### Dual-Boot Setup (completed — reference only)
 
-4. When the script finishes, note the IP address it prints.
-5. Also note the `.local` hostname command it prints.
+These files were used to install Linux Mint alongside Windows 7. The install is done; they are kept for reference.
 
-## Mac SSH Commands
+| File | Purpose |
+|---|---|
+| `thinkpad-linux-preflight.bat` | Windows hardware/disk inventory — run before install |
+| `download-mint-and-rufus.bat` | Opens official Linux Mint and Rufus download pages |
+| `shrink-c-for-linux.txt` | Manual DiskPart commands to shrink C: |
+| `mint-post-install.sh` | Post-install: updates, SSH, Git, dev tools, Avahi |
 
-Use the exact command format below from macOS:
+Observed result: entering `153600` MB in Disk Management produced ~150 GB of unallocated space for Linux.
 
-```bash
-ssh <linux-username>@<thinkpad-ip-address>
-ssh <linux-username>@<hostname>.local
+---
+
+## Server Access
+
+| Item | Value |
+|---|---|
+| Server IP | `192.168.1.60` |
+| SSH alias | `ssh thinkpad` (see `LENOVA-SSH.md` for setup) |
+| SSH user | `taylor` |
+| HTTPS Uptime Kuma | `https://192.168.1.60` |
+| Finder share | `smb://192.168.1.60/MacShare` |
+| Mac mount path | `/Volumes/MacShare` |
+| VNC tunnel | `ssh thinkpad` then `./scripts/mac-open-vnc.sh` → `vnc://127.0.0.1:5902` |
+
+---
+
+## Safety Rules
+
+- Do not store passwords in scripts, files, or shell history.
+- Do not disable SSH or change firewall rules that could block SSH.
+- Do not stop Docker unless needed for a specific command.
+- Do not remove Docker volumes or delete backups.
+- Do not replace `/etc/samba/smb.conf` blindly — use the `smb-MacShare.conf` block only.
+- Do not open VNC directly on the LAN. Keep it bound to Lenovo localhost and reach it via `ssh thinkpad`.
+
+---
+
+## Source Of Truth
+
+This repo (`/Volumes/T9/code/lenova`) is the durable source. The Lenovo-hosted copy at `/Volumes/MacShare/thinkpad-server-admin` is a mirror only — it can be lost if the Lenovo is wiped or the share is destroyed.
+
+To refresh the mirror after mounting `smb://192.168.1.60/MacShare`:
+
+```sh
+rsync -a --delete --exclude='.DS_Store' --exclude='._*' thinkpad-server-admin/ /Volumes/MacShare/thinkpad-server-admin/
 ```
