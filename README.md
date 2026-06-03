@@ -4,6 +4,52 @@ Admin toolkit for Taylor's Lenovo ThinkPad T430 running Linux Mint XFCE as a dua
 
 Linux Mint is installed and running. The ThinkPad is live on the LAN as a headless server.
 
+## Using the Skill With Your Own Hardware
+
+The `skills/headless-linux-server/` folder contains a reusable AI agent skill for converting any Windows PC or Intel iMac into a headless Linux Mint server. It is designed to work with agent frameworks that support skills or custom instructions — such as [Claude Code](https://claude.ai/code).
+
+### What the skill covers
+
+- Assessing your hardware (Windows PC vs iMac, BIOS vs EFI, RAM, disk)
+- Choosing between dual-boot (keep Windows/macOS) or clean wipe (Linux only)
+- Platform-specific install steps for Windows PCs and Intel iMacs
+- Post-install: SSH, static IP, headless config, Docker, Caddy, Samba, VNC-over-SSH
+
+### Folder structure
+
+```
+skills/headless-linux-server/
+├── SKILL.md                     # Skill definition — tells the agent when and how to use it
+└── references/
+    ├── windows-bios.md          # Windows PC: Rufus USB, DiskPart shrink, F12 boot, Mint installer
+    ├── imac-efi.md              # Intel iMac: Disk Utility shrink, Option-key boot, Mint installer
+    └── post-install.md          # All platforms: SSH, key auth, Docker, Caddy, Samba, VNC-over-SSH
+```
+
+`SKILL.md` is the entry point. The agent reads it first to understand scope and routing, then pulls in the relevant reference file based on your hardware. Reference files are only loaded when needed so they don't fill up the context window on every message.
+
+### Installing in Claude Code
+
+Copy the skill folder into your Claude skills directory:
+
+```sh
+cp -r skills/headless-linux-server ~/.claude/skills/
+```
+
+Once installed, the skill activates automatically when you describe what you want to do. You do not need to reference the skill by name — just describe your goal:
+
+- "I want to repurpose my old Dell as a home server"
+- "Help me install Linux on my iMac"
+- "Set up a headless Linux box with Docker and SSH"
+
+The skill will ask about your hardware, walk through the install, and guide post-install setup.
+
+### Using with other agent frameworks
+
+The skill follows a standard structure: a `SKILL.md` frontmatter file and a `references/` folder of lazy-loaded markdown docs. Any framework that supports reading a skill definition and referencing supplemental files can use it. Point your agent at `SKILL.md` as the skill entrypoint.
+
+---
+
 ## Quick Access
 
 ```sh
