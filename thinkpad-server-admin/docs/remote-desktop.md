@@ -17,7 +17,7 @@ Run the setup script over SSH:
 ./scripts/mac-setup-vnc.sh
 ```
 
-If SSH or sudo asks for a password, use the Lenovo Linux password for user `taylor`.
+If SSH or sudo asks for a password, use the Lenovo Linux password for user `<YOUR_USERNAME>`.
 
 The Mac wrapper uploads the Linux setup script to a temporary file on the Lenovo, then runs it with `ssh -t thinkpad` so `sudo` and `vncpasswd` can prompt correctly. The setup installs TigerVNC, XFCE, and DBus support. It also writes `~/.vnc/xstartup` so the VNC session starts XFCE.
 
@@ -85,7 +85,7 @@ check `nc -z 127.0.0.1 5902` first, then `ssh thinkpad 'vncserver -list'`. If `:
 
 ## One-Command Mac Helper
 
-From `/Volumes/T9/code/lenova/thinkpad-server-admin`:
+From `<YOUR_REPO_PATH>/thinkpad-server-admin`:
 
 ```sh
 ./scripts/mac-open-vnc.sh

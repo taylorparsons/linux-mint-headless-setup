@@ -1,6 +1,6 @@
 # Recovery
 
-Use these diagnostics before making changes. When a command prompts for `taylor` over SSH or `[sudo]`, use the Lenovo Linux password.
+Use these diagnostics before making changes. When a command prompts for `<YOUR_USERNAME>` over SSH or `[sudo]`, use the Lenovo Linux password.
 
 ## P0 SSH Fails
 
@@ -8,9 +8,9 @@ From the Mac:
 
 ```sh
 ssh -v thinkpad
-ssh taylor@192.168.1.60
-ping 192.168.1.60
-nc -z -G 5 192.168.1.60 22
+ssh <YOUR_USERNAME>@<YOUR_IP>
+ping <YOUR_IP>
+nc -z -G 5 <YOUR_IP> 22
 ```
 
 On the Lenovo console if local access is needed:
@@ -41,7 +41,7 @@ Expected container bind is `127.0.0.1:3001:3001`. Do not remove the `uptime-kuma
 ssh thinkpad 'systemctl status caddy --no-pager'
 ssh thinkpad 'sudo caddy validate --config /etc/caddy/Caddyfile'
 ssh thinkpad 'sudo journalctl -u caddy -n 100 --no-pager'
-curl -k -I https://192.168.1.60
+curl -k -I https://<YOUR_IP>
 ```
 
 Known working Caddyfile is stored in `configs/Caddyfile`.
@@ -51,15 +51,15 @@ Known working Caddyfile is stored in `configs/Caddyfile`.
 From Finder, use:
 
 ```text
-smb://192.168.1.60/MacShare
+smb://<YOUR_IP>/<YOUR_SHARE_NAME>
 ```
 
 From the Mac terminal:
 
 ```sh
-nc -z -G 5 192.168.1.60 445
-mount | grep MacShare
-ls -la /Volumes/MacShare
+nc -z -G 5 <YOUR_IP> 445
+mount | grep <YOUR_SHARE_NAME>
+ls -la /Volumes/<YOUR_SHARE_NAME>
 ```
 
 From the Lenovo:
@@ -67,20 +67,20 @@ From the Lenovo:
 ```sh
 ssh thinkpad 'systemctl status smbd --no-pager'
 ssh thinkpad 'testparm -s'
-ssh thinkpad 'ls -ld /home/taylor/MacShare'
+ssh thinkpad 'ls -ld /home/<YOUR_USERNAME>/<YOUR_SHARE_NAME>'
 ```
 
 ## P1 SMB Password Fails
 
-- Finder login name should be `taylor`, not `taylorparsons`.
-- Finder password is the Samba password created with `sudo smbpasswd -a taylor`.
+- Finder login name should be `<YOUR_USERNAME>`, not `<YOUR_MAC_USERNAME>`.
+- Finder password is the Samba password created with `sudo smbpasswd -a <YOUR_USERNAME>`.
 - It may differ from the Lenovo Linux password and Mac password.
 
 Diagnostic commands:
 
 ```sh
-ssh thinkpad 'sudo pdbedit -L | grep "^taylor:"'
-ssh thinkpad 'sudo smbpasswd -a taylor'
+ssh thinkpad 'sudo pdbedit -L | grep "^<YOUR_USERNAME>:"'
+ssh thinkpad 'sudo smbpasswd -a <YOUR_USERNAME>'
 ```
 
 The `smbpasswd` command changes the Samba password. Run it only when Taylor is ready to set or reset that credential.
@@ -88,12 +88,12 @@ The `smbpasswd` command changes the Samba password. Run it only when Taylor is r
 ## P1 Browser Shows Certificate Warning Again
 
 ```sh
-curl -k -I https://192.168.1.60
+curl -k -I https://<YOUR_IP>
 ssh thinkpad 'systemctl status caddy --no-pager'
 ssh thinkpad 'sudo caddy trust'
 ```
 
-If Chrome still warns, restart Chrome and confirm the Caddy internal root certificate is trusted on the Mac. Before trust, use `curl -k -I https://192.168.1.60`; after trust, use `curl -I https://192.168.1.60`.
+If Chrome still warns, restart Chrome and confirm the Caddy internal root certificate is trusted on the Mac. Before trust, use `curl -k -I https://<YOUR_IP>`; after trust, use `curl -I https://<YOUR_IP>`.
 
 ## P1 Remote Desktop Does Not Open
 

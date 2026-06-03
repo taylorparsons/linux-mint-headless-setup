@@ -75,7 +75,7 @@ crontab -e
 Add this line (runs at 08:00 every day):
 
 ```
-0 8 * * * /Volumes/T9/code/lenova/thinkpad-server-admin/scripts/mac-notify-updates.sh >> /tmp/lenova-updates.log 2>&1
+0 8 * * * <YOUR_REPO_PATH>/thinkpad-server-admin/scripts/mac-notify-updates.sh >> /tmp/lenova-updates.log 2>&1
 ```
 
 The script exits silently if the Lenovo is not reachable (e.g., powered off) — no spurious notifications.

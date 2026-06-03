@@ -1,22 +1,22 @@
 # Current State
 
-This document records the known state for Taylor's Lenovo ThinkPad T430 local server. It intentionally does not store actual passwords.
+This document records the known state for your Lenovo ThinkPad T430 local server. It intentionally does not store actual passwords.
 
 ## P0 Access
 
-- Mac user appears to be `taylorparsons`.
+- Mac user appears to be `<YOUR_MAC_USERNAME>`.
 - Mac can SSH to the Lenovo with `ssh thinkpad`.
 - Mac SSH config:
 
 ```sshconfig
 Host thinkpad
-  HostName 192.168.1.60
-  User taylor
+  HostName <YOUR_IP>
+  User <YOUR_USERNAME>
 ```
 
-- Reserved LAN IP: `192.168.1.60`.
-- SSH user: `taylor`.
-- Host prompt observed as `taylor@taylor-ThinkPad-T430:~$`.
+- Reserved LAN IP: `<YOUR_IP>`.
+- SSH user: `<YOUR_USERNAME>`.
+- Host prompt observed as `<YOUR_USERNAME>@<YOUR_HOSTNAME>:~$`.
 - Laptop lid is closed and the server remains reachable.
 - SSH survived reboot.
 
@@ -46,31 +46,31 @@ Host thinkpad
   - Restart policy: `always`
   - Docker volume: `uptime-kuma`
   - Expected bind: `127.0.0.1:3001:3001`
-- Direct LAN HTTP access to `http://192.168.1.60:3001` should not load.
+- Direct LAN HTTP access to `http://<YOUR_IP>:3001` should not load.
 - Caddy should be the only network-facing path to Uptime Kuma.
 
 ## Caddy And HTTPS
 
 - Caddy is installed on the Lenovo.
 - Caddy is used as a reverse proxy for HTTPS.
-- Normal browser access from the Mac: `https://192.168.1.60`.
+- Normal browser access from the Mac: `https://<YOUR_IP>`.
 - Caddy internal root certificate was copied to the Mac and trusted.
-- Chrome should load `https://192.168.1.60` without the privacy warning after restart.
-- If testing before trust: `curl -k -I https://192.168.1.60`.
-- If testing after trust: `curl -I https://192.168.1.60`.
+- Chrome should load `https://<YOUR_IP>` without the privacy warning after restart.
+- If testing before trust: `curl -k -I https://<YOUR_IP>`.
+- If testing after trust: `curl -I https://<YOUR_IP>`.
 - Good response can be HTTP 200 or HTTP 302.
 
 ## Samba And Finder
 
 - Samba installed and running.
-- Share folder on Lenovo: `/home/taylor/MacShare`.
-- Share name: `MacShare`.
-- Finder connection: `smb://192.168.1.60/MacShare`.
-- Mac mounted path: `/Volumes/MacShare`.
-- Samba user: `taylor`.
-- Finder login name: `taylor`.
-- Finder password is the Samba password created with `sudo smbpasswd -a taylor`.
-- Do not use Mac username `taylorparsons` for SMB login.
+- Share folder on Lenovo: `/home/<YOUR_USERNAME>/<YOUR_SHARE_NAME>`.
+- Share name: `<YOUR_SHARE_NAME>`.
+- Finder connection: `smb://<YOUR_IP>/<YOUR_SHARE_NAME>`.
+- Mac mounted path: `/Volumes/<YOUR_SHARE_NAME>`.
+- Samba user: `<YOUR_USERNAME>`.
+- Finder login name: `<YOUR_USERNAME>`.
+- Finder password is the Samba password created with `sudo smbpasswd -a <YOUR_USERNAME>`.
+- Do not use Mac username `<YOUR_MAC_USERNAME>` for SMB login.
 - Warning observed: `WARNING: The 'netbios name' is too long (max. 15 chars).`
 - The warning is not blocking the share.
 - Optional cleanup: set `netbios name = THINKPAD` under `[global]` in `/etc/samba/smb.conf`.
@@ -83,8 +83,8 @@ Host thinkpad
 
 ## Password Prompt Guide
 
-- `taylor@192.168.1.60's password:` means Lenovo Linux password.
-- `[sudo] password for taylor:` on SSH means Lenovo Linux password.
+- `<YOUR_USERNAME>@<YOUR_IP>'s password:` means Lenovo Linux password.
+- `[sudo] password for <YOUR_USERNAME>:` on SSH means Lenovo Linux password.
 - macOS Keychain or local Mac sudo prompt means Mac login/admin password.
 - Finder SMB login uses the Samba password, which may differ from both.
 - Do not store actual passwords in this project.
