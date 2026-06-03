@@ -57,12 +57,12 @@ Observed result: entering `153600` MB in Disk Management produced ~150 GB of una
 
 | Item | Value |
 |---|---|
-| Server IP | `192.168.1.60` |
+| Server IP | `<YOUR_IP>` |
 | SSH alias | `ssh thinkpad` (see `LENOVA-SSH.md` for setup) |
-| SSH user | `taylor` |
-| HTTPS Uptime Kuma | `https://192.168.1.60` |
-| Finder share | `smb://192.168.1.60/MacShare` |
-| Mac mount path | `/Volumes/MacShare` |
+| SSH user | `<YOUR_USERNAME>` |
+| HTTPS Uptime Kuma | `https://<YOUR_IP>` |
+| Finder share | `smb://<YOUR_IP>/<YOUR_SHARE_NAME>` |
+| Mac mount path | `/Volumes/<YOUR_SHARE_NAME>` |
 | VNC tunnel | `ssh thinkpad` then `./scripts/mac-open-vnc.sh` → `vnc://127.0.0.1:5902` |
 
 ---
@@ -73,17 +73,17 @@ Observed result: entering `153600` MB in Disk Management produced ~150 GB of una
 - Do not disable SSH or change firewall rules that could block SSH.
 - Do not stop Docker unless needed for a specific command.
 - Do not remove Docker volumes or delete backups.
-- Do not replace `/etc/samba/smb.conf` blindly — use the `smb-MacShare.conf` block only.
+- Do not replace `/etc/samba/smb.conf` blindly — use the `smb-<YOUR_SHARE_NAME>.conf` block only.
 - Do not open VNC directly on the LAN. Keep it bound to Lenovo localhost and reach it via `ssh thinkpad`.
 
 ---
 
 ## Source Of Truth
 
-This repo (`/Volumes/T9/code/lenova`) is the durable source. The Lenovo-hosted copy at `/Volumes/MacShare/thinkpad-server-admin` is a mirror only — it can be lost if the Lenovo is wiped or the share is destroyed.
+This repo (`<YOUR_REPO_PATH>`) is the durable source. The Lenovo-hosted copy at `/Volumes/<YOUR_SHARE_NAME>/thinkpad-server-admin` is a mirror only — it can be lost if the Lenovo is wiped or the share is destroyed.
 
-To refresh the mirror after mounting `smb://192.168.1.60/MacShare`:
+To refresh the mirror after mounting `smb://<YOUR_IP>/<YOUR_SHARE_NAME>`:
 
 ```sh
-rsync -a --delete --exclude='.DS_Store' --exclude='._*' thinkpad-server-admin/ /Volumes/MacShare/thinkpad-server-admin/
+rsync -a --delete --exclude='.DS_Store' --exclude='._*' thinkpad-server-admin/ /Volumes/<YOUR_SHARE_NAME>/thinkpad-server-admin/
 ```
