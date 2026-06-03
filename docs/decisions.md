@@ -63,7 +63,7 @@
 - Related requests: CR-20260603-1226
 - PRD sections: ThinkPad server administration project
 - Decision:
-  Make `/Volumes/T9/code/lenova/thinkpad-server-admin` the durable source-of-truth project location because `/Volumes/MacShare/thinkpad-server-admin` lives on the Lenovo and would be lost if the Lenovo is terminated. Keep any SMB copy as a deployable mirror only, and do not delete the existing SMB copy.
+  Make `<YOUR_REPO>/thinkpad-server-admin` the durable source-of-truth project location because `/Volumes/MacShare/thinkpad-server-admin` lives on the Lenovo and would be lost if the Lenovo is terminated. Keep any SMB copy as a deployable mirror only, and do not delete the existing SMB copy.
 
 ## D-20260603-1239
 - Timestamp: 2026-06-03 12:39 America/Los_Angeles

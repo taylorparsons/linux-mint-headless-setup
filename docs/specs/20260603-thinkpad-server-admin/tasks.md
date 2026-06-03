@@ -2,7 +2,7 @@
 
 - T-001 Create the ThinkPad server-admin project files and safety-focused scripts. (Implements: FR-001, FR-002, FR-003, FR-004)
 - T-002 Run validation checks and sync ATHENA completion notes. (Implements: FR-005)
-- T-003 Move the durable source copy of the ThinkPad server-admin project into `/Volumes/T9/code/lenova/thinkpad-server-admin` and document `/Volumes/MacShare` as a mirror only. (Implements: FR-001, FR-006)
+- T-003 Move the durable source copy of the ThinkPad server-admin project into `<YOUR_REPO>/thinkpad-server-admin` and document `/Volumes/MacShare` as a mirror only. (Implements: FR-001, FR-006)
 - T-004 Add failing validation tests for the SSH-tunneled VNC remote desktop assets. (Implements: FR-007, FR-008, FR-009)
 - T-005 Add the remote desktop runbook and helper scripts. (Implements: FR-007, FR-008, FR-009)
 - T-006 Run validation checks and sync ATHENA completion notes. (Implements: FR-005, FR-007, FR-008, FR-009)

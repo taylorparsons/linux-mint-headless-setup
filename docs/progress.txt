@@ -21,7 +21,7 @@ Session 3: 20260603-thinkpad-server-admin (CLOSED)
 - All 9/9 unit tests passing; live macOS Screen Sharing connection verified
 - VNC configured on display :2 (port 5902) because Xorg owns :0 and :1
 - Feature marked Status: Done and shipped in PRD
-- `/Volumes/T9/code/lenova/thinkpad-server-admin` is durable source; `/Volumes/MacShare/thinkpad-server-admin` is mirror only
+- `<YOUR_REPO>/thinkpad-server-admin` is durable source; `/Volumes/MacShare/thinkpad-server-admin` is mirror only
 
 IN PROGRESS
 - None.

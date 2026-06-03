@@ -4,7 +4,7 @@ Status: Done
 
 ## Functional Requirements
 
-- FR-001: The project must exist at `/Volumes/T9/code/lenova/thinkpad-server-admin` as the durable source-of-truth copy. (Sources: CR-20260603-1226; D-20260603-1226)
+- FR-001: The project must exist at `<YOUR_REPO>/thinkpad-server-admin` as the durable source-of-truth copy. (Sources: CR-20260603-1226; D-20260603-1226)
 - FR-002: The project must include documentation for the known Linux Mint server state, access paths, password prompt guide, maintenance checklist, recovery commands, and do-not-delete safety rules without storing passwords. (Sources: CR-20260603-0000)
 - FR-003: The project must include reference config snippets for Caddy, the Samba `MacShare` block, and the Mac SSH config alias. (Sources: CR-20260603-0000)
 - FR-004: The project must include executable Mac-run scripts for read-only server verification, timestamped non-overwriting Uptime Kuma Docker volume backup, and bidirectional SMB share testing. (Sources: CR-20260603-0000; D-20260603-0000)
@@ -21,7 +21,7 @@ Status: Done
 
 ## Acceptance Scenarios
 
-- Given the local repo is available, when the project is generated, then all requested files exist under `/Volumes/T9/code/lenova/thinkpad-server-admin`. (Verifies: FR-001, FR-002, FR-003, FR-004)
+- Given the local repo is available, when the project is generated, then all requested files exist under `<YOUR_REPO>/thinkpad-server-admin`. (Verifies: FR-001, FR-002, FR-003, FR-004)
 - Given a user reads the documentation, when they follow maintenance or recovery guidance, then they see priority labels, exact known access paths, diagnostic commands, password prompt meanings, and explicit warnings not to delete backups, Docker volumes, or `/home/taylor/MacShare` without asking Taylor. (Verifies: FR-002)
 - Given a user reviews the scripts, when checking for server risk, then verification makes no changes, backups use timestamped filenames and refuse overwrite, and SMB tests either ask before cleanup or leave timestamped files. (Verifies: FR-004)
 - Given the project scripts are complete, when validation is run, then shell syntax checks pass and `verify-server.sh` reports PASS or FAIL for each check. (Verifies: FR-005)
