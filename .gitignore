@@ -1,0 +1,17 @@
+# macOS metadata
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Claude Code local settings
+.claude/
+
+# Browser link exports (not project files)
+link.htm
+link.txt

@@ -1,0 +1,40 @@
+# PRD
+
+## Active Feature
+
+- `20260603-thinkpad-server-admin`: Create a small Mac-side project in `/Volumes/T9/code/lenova/thinkpad-server-admin` that documents the current Linux Mint server state, adds safe verification scripts, prepares non-overwriting Uptime Kuma backup automation, records recovery/do-not-delete guardrails, and adds an SSH-tunneled TigerVNC virtual XFCE remote desktop setup for macOS Screen Sharing; `/Volumes/MacShare/thinkpad-server-admin` is only a mirror/deploy target. (Sources: CR-20260603-0000, CR-20260603-1226, CR-20260603-1239, CR-20260603-1304; D-20260603-0000, D-20260603-1226, D-20260603-1239, D-20260603-1304)
+- `20260602-thinkpad-linux-mint-dual-boot`: Build a small repo that safely supports Lenovo ThinkPad dual-boot preparation with Windows 7 preflight automation, a manual-only DiskPart shrink script, a Linux Mint post-install helper, and a plain-language runbook. (Sources: CR-20260602-1253, CR-20260602-1301, CR-20260602-1342; D-20260602-1258, D-20260602-1304, D-20260602-1344)
+
+## Requirements
+
+- Create and maintain `/Volumes/T9/code/lenova/thinkpad-server-admin` as the durable source-of-truth project location; do not rely on `/Volumes/MacShare/thinkpad-server-admin` as the only copy because it can be destroyed with the Lenovo. (Sources: CR-20260603-1226; D-20260603-1226)
+- Treat `/Volumes/MacShare/thinkpad-server-admin` as an optional mirror/deploy target only when `/Volumes/MacShare` is mounted; otherwise tell Taylor to mount `smb://192.168.1.60/MacShare` before mirroring. (Sources: CR-20260603-0000, CR-20260603-1226; D-20260603-0000, D-20260603-1226)
+- Include documentation files that explain the project, current server state, Caddy/Samba/SSH/Docker details, recovery commands, password-prompt meanings, and do-not-delete guardrails without storing passwords. (Sources: CR-20260603-0000)
+- Include config reference snippets for the known working Caddyfile, Samba share block, and Mac SSH config snippet. (Sources: CR-20260603-0000)
+- Include Mac-run scripts for read-only verification, non-overwriting timestamped Uptime Kuma Docker volume backup, and bidirectional SMB file visibility testing. (Sources: CR-20260603-0000; D-20260603-0000)
+- Make scripts executable, run the verification script, and report PASS/FAIL results before making any server changes. (Sources: CR-20260603-0000; D-20260603-0000)
+- Add remote desktop documentation and helper scripts for a manual-start TigerVNC virtual XFCE desktop on the Lenovo, reachable from Mac Screen Sharing only through an SSH tunnel to `127.0.0.1:5902`. VNC must use display `:2` because Xorg owns `:0` and `:1`. (Sources: CR-20260603-1239, CR-20260603-1400; D-20260603-1239, D-20260603-1400)
+- Keep the remote desktop setup safe by avoiding plaintext password storage, avoiding firewall-opening commands, and avoiding LAN-wide VNC binding. (Sources: CR-20260603-1239; D-20260603-1239)
+- Provide a Mac-side VNC setup wrapper that runs the Lenovo installer with a real remote TTY for `sudo` and `vncpasswd`, and make the Linux setup fail fast if apt installation fails. (Sources: CR-20260603-1250; D-20260603-1250)
+- Document the current handoff state so `./scripts/mac-open-vnc.sh` is the primary Mac opener and recovery points to the exact setup/open/verify commands. (Sources: CR-20260603-1304; D-20260603-1304)
+- Record the root cause of the `Connection failed to "127.0.0.1:5901"` failure (Xorg owns `:1`, VNC must use `:2`/`5902`) and document the recovery checks. (Sources: CR-20260603-1313, CR-20260603-1400; D-20260603-1313, D-20260603-1400)
+- Provide a one-time Lenovo setup script (`linux-setup-auto-updates.sh`) that installs `unattended-upgrades` for automatic security patches and adds a root daily cron to refresh the apt cache at 05:00. (Sources: CR-20260603-1341; D-20260603-1341)
+- Provide a Mac-run notification script (`mac-notify-updates.sh`) that SSHes to the Lenovo, checks `apt list --upgradable`, and delivers a macOS notification via `osascript` with the pending package count and up to three package names when updates exist. (Sources: CR-20260603-1341; D-20260603-1341)
+- Document how to run updates manually via SSH, how to set up auto-updates, and how to add the Mac notification as a daily cron job — all without storing passwords — in `docs/updates.md`. (Sources: CR-20260603-1341; D-20260603-1341)
+- Provide a Windows batch script named `thinkpad-linux-preflight.bat` that collects system details into a Desktop folder, evaluates C: free space, recommends safe shrink sizes, prints manual Disk Management steps, and does not modify partitions. (Sources: CR-20260602-1253; D-20260602-1304)
+- Provide a Windows batch script named `download-mint-and-rufus.bat` that creates a Desktop download folder, opens the official Linux Mint XFCE, Rufus, and archived Rufus 3.22 pages, guides the user to the Windows 7-compatible `Rufus 3.22` archive entry, and does not change partitions or boot settings. (Sources: CR-20260602-1330, CR-20260602-1342; D-20260602-1332, D-20260602-1344)
+- Provide a manual DiskPart script file named `shrink-c-for-linux.txt` that shrinks C: by `102400` MB by default, includes a `153600` MB alternative, leaves space unallocated, and does not create or format partitions. (Sources: CR-20260602-1253; D-20260602-1304)
+- Provide a Linux Mint post-install script named `mint-post-install.sh` that updates packages, installs the requested tools, enables SSH and Avahi, and prints SSH connection commands. (Sources: CR-20260602-1253)
+- Provide a repo `README.md` that gives the scripts first, then the exact order of operations, official download links, Rufus settings, manual boot/install steps, and a hard stop if the installer does not offer “Install Linux Mint alongside Windows 7”. (Sources: CR-20260602-1253; D-20260602-1258)
+- Record the observed field result that shrinking by `153600` MB on the target ThinkPad produced about `150 GB` of unallocated space, so the runbook reflects the actual tested Windows flow. (Sources: CR-20260602-1342; D-20260602-1344)
+- Provide a dedicated root markdown file named `LENOVA-SSH.md` that explains how to SSH from the Mac to the Lenovo, how to enable SSH on the Lenovo, and how to use `sudo` for full admin privileges without enabling root SSH login. (Sources: CR-20260603-0930; D-20260603-0932)
+
+## Shipped
+
+- `20260603-thinkpad-server-admin` shipped under `/Volumes/T9/code/lenova/thinkpad-server-admin` as the durable source-of-truth project, with the original `/Volumes/MacShare/thinkpad-server-admin` left in place as an SMB mirror, and now includes SSH-tunneled TigerVNC remote desktop docs/scripts for macOS Screen Sharing. VNC uses display `:2` (port `5902`) because Xorg owns `:0` and `:1`. `./scripts/mac-open-vnc.sh` is the primary opener; Mac Screen Sharing connection verified live. (Sources: CR-20260603-0000, CR-20260603-1226, CR-20260603-1239, CR-20260603-1304, CR-20260603-1400; D-20260603-0000, D-20260603-1226, D-20260603-1239, D-20260603-1304, D-20260603-1400)
+- `20260602-thinkpad-linux-mint-dual-boot` shipped with [thinkpad-linux-preflight.bat](/Volumes/T9/code/lenova/thinkpad-linux-preflight.bat), [download-mint-and-rufus.bat](/Volumes/T9/code/lenova/download-mint-and-rufus.bat), [shrink-c-for-linux.txt](/Volumes/T9/code/lenova/shrink-c-for-linux.txt), [mint-post-install.sh](/Volumes/T9/code/lenova/mint-post-install.sh), and [README.md](/Volumes/T9/code/lenova/README.md). (Sources: CR-20260602-1253, CR-20260602-1301, CR-20260602-1330, CR-20260602-1342; D-20260602-1258, D-20260602-1304, D-20260602-1332, D-20260602-1344)
+- `20260603-lenova-ssh-runbook` shipped with [LENOVA-SSH.md](/Volumes/T9/code/lenova/LENOVA-SSH.md). (Sources: CR-20260603-0930; D-20260603-0932)
+
+## Backlog
+
+- None.

@@ -1,0 +1,11 @@
+rem WARNING: Manual DiskPart script for shrinking Windows C: for Linux Mint dual boot.
+rem WARNING: Review this file before running it.
+rem WARNING: This script leaves the freed space UNALLOCATED for the Linux Mint installer.
+rem WARNING: This script does not add partitions and does not format anything.
+rem If you do not want to continue, close Command Prompt now.
+rem Default shrink amount: 102400 MB (about 100 GB).
+rem Alternative for about 150 GB: shrink desired=153600
+
+select volume C
+detail volume
+shrink desired=102400

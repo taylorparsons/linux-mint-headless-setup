@@ -1,0 +1,17 @@
+# Tasks: 20260603-thinkpad-server-admin
+
+- T-001 Create the ThinkPad server-admin project files and safety-focused scripts. (Implements: FR-001, FR-002, FR-003, FR-004)
+- T-002 Run validation checks and sync ATHENA completion notes. (Implements: FR-005)
+- T-003 Move the durable source copy of the ThinkPad server-admin project into `/Volumes/T9/code/lenova/thinkpad-server-admin` and document `/Volumes/MacShare` as a mirror only. (Implements: FR-001, FR-006)
+- T-004 Add failing validation tests for the SSH-tunneled VNC remote desktop assets. (Implements: FR-007, FR-008, FR-009)
+- T-005 Add the remote desktop runbook and helper scripts. (Implements: FR-007, FR-008, FR-009)
+- T-006 Run validation checks and sync ATHENA completion notes. (Implements: FR-005, FR-007, FR-008, FR-009)
+- T-007 Fix VNC setup to use a remote TTY and fail fast on package installation errors. (Implements: FR-010, FR-011)
+- T-008 Fix Mac VNC opener to handle already-running VNC and password-authenticated tunnel startup. (Implements: FR-012)
+- T-009 Update the docs for handoff so the primary opener, current `:1` state, and exact setup/open/verify commands are explicit. (Implements: FR-013)
+- T-010 Document the observed `127.0.0.1:5901` Screen Sharing failure and first-response recovery checks. (Implements: FR-014)
+- T-011 Close out the interrupted Codex session: capture CR-20260603-1400, remove stale IN PROGRESS entry, verify 8/8 tests still pass, and sync progress log. (Implements: FR-005)
+- T-012 Fix VNC display from `:1`/`5901` to `:2`/`5902` — Xorg owns `:0` and `:1`; set up SSH key auth; verify live Mac Screen Sharing connection; update all scripts, docs, tests, and ATHENA trail. (Implements: FR-007, FR-008, FR-009, FR-014)
+- T-013 Add failing tests for auto-update assets: `linux-setup-auto-updates.sh`, `mac-notify-updates.sh`, `docs/updates.md`. (Implements: FR-015, FR-016, FR-017)
+- T-014 Implement `linux-setup-auto-updates.sh`, `mac-notify-updates.sh`, and `docs/updates.md`; update README and current-state.md. (Implements: FR-015, FR-016, FR-017)
+- T-015 Verify 9/9 tests pass and sync ATHENA trail. (Implements: FR-005)
