@@ -2,8 +2,8 @@
 set -u
 
 SSH_ALIAS="${SSH_ALIAS:-thinkpad}"
-SERVER_IP="${SERVER_IP:-192.168.1.60}"
-MAC_SHARE="${MAC_SHARE:-/Volumes/MacShare}"
+SERVER_IP="${SERVER_IP:-<YOUR_IP>}"
+MAC_SHARE="${MAC_SHARE:-/Volumes/<YOUR_SHARE_NAME>}"
 if [ -t 0 ]; then
   SSH_OPTS=(-o ConnectTimeout=5)
 else
@@ -25,7 +25,7 @@ check() {
 
 echo "Read-only verification from the Mac."
 echo "SSH command: ssh thinkpad"
-echo "If SSH asks for a password, use the Lenovo Linux password for user taylor."
+echo "If SSH asks for a password, use the Lenovo Linux password for user <YOUR_USERNAME>."
 if [ ! -t 0 ]; then
   echo "Non-interactive run: SSH password prompts are disabled, so password-only SSH will show as FAIL."
 fi

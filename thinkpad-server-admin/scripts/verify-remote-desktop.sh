@@ -17,7 +17,7 @@ check() {
 }
 
 echo "Remote desktop verification from the Mac."
-echo "If SSH asks for a password, use the Lenovo Linux password for user taylor."
+echo "If SSH asks for a password, use the Lenovo Linux password for user <YOUR_USERNAME>."
 
 check "ssh thinkpad works" ssh "$SSH_ALIAS" true
 check "vncserver command exists" ssh "$SSH_ALIAS" "command -v vncserver"

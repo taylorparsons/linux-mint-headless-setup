@@ -2,19 +2,19 @@
 set -u
 
 SSH_ALIAS="${SSH_ALIAS:-thinkpad}"
-MAC_SHARE="${MAC_SHARE:-/Volumes/MacShare}"
-LENOVO_SHARE="${LENOVO_SHARE:-/home/taylor/MacShare}"
+MAC_SHARE="${MAC_SHARE:-/Volumes/<YOUR_SHARE_NAME>}"
+LENOVO_SHARE="${LENOVO_SHARE:-/home/<YOUR_USERNAME>/<YOUR_SHARE_NAME>}"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 MAC_FILE="${MAC_SHARE}/mac-to-lenovo-test-${STAMP}.txt"
 LENOVO_FILE="${LENOVO_SHARE}/lenovo-to-mac-test-${STAMP}.txt"
 MAC_VIEW_OF_LENOVO_FILE="${MAC_SHARE}/lenovo-to-mac-test-${STAMP}.txt"
 
 echo "Testing SMB visibility in both directions."
-echo "If SSH asks for a password, use the Lenovo Linux password for user taylor."
+echo "If SSH asks for a password, use the Lenovo Linux password for user <YOUR_USERNAME>."
 
 if [ ! -d "$MAC_SHARE" ]; then
   echo "FAIL ${MAC_SHARE} is not mounted."
-  echo "Mount Finder share first: smb://192.168.1.60/MacShare"
+  echo "Mount Finder share first: smb://<YOUR_IP>/<YOUR_SHARE_NAME>"
   exit 1
 fi
 

@@ -11,7 +11,7 @@ if [ ! -f "$LOCAL_SETUP" ]; then
 fi
 
 echo "Uploading Linux VNC setup script to ${SSH_ALIAS}."
-echo "If SSH asks for a password, use the Lenovo Linux password for user taylor."
+echo "If SSH asks for a password, use the Lenovo Linux password for user <YOUR_USERNAME>."
 
 REMOTE_PATH="/tmp/thinkpad-vnc-setup-${USER:-mac}-$$.sh"
 

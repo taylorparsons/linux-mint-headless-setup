@@ -20,7 +20,7 @@ if nc -z 127.0.0.1 "$LOCAL_PORT" >/dev/null 2>&1; then
   echo "Local port ${LOCAL_PORT} is already open; reusing existing tunnel."
 else
   echo "Opening SSH tunnel: ${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT}"
-  echo "If SSH asks for a password, use the Lenovo Linux password for user taylor."
+  echo "If SSH asks for a password, use the Lenovo Linux password for user <YOUR_USERNAME>."
   ssh -fN -o ExitOnForwardFailure=yes -L ${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT} "$SSH_ALIAS"
 fi
 

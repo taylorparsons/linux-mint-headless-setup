@@ -16,7 +16,7 @@ else
 fi
 
 echo "Installing TigerVNC virtual XFCE desktop packages."
-echo "If sudo asks for a password, use the Lenovo Linux password for user taylor."
+echo "If sudo asks for a password, use the Lenovo Linux password for user <YOUR_USERNAME>."
 $SUDO apt update
 $SUDO apt install -y "${PACKAGES[@]}"
 

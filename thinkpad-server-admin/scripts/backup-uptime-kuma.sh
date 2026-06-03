@@ -2,14 +2,14 @@
 set -u
 
 SSH_ALIAS="${SSH_ALIAS:-thinkpad}"
-BACKUP_DIR="/home/taylor/server-backups"
+BACKUP_DIR="/home/<YOUR_USERNAME>/server-backups"
 VOLUME="uptime-kuma"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 BACKUP_NAME="uptime-kuma-backup-${STAMP}.tar.gz"
 BACKUP_PATH="${BACKUP_DIR}/${BACKUP_NAME}"
 
 echo "Creating timestamped Uptime Kuma backup on Lenovo."
-echo "If SSH or sudo asks for a password, use the Lenovo Linux password for user taylor."
+echo "If SSH or sudo asks for a password, use the Lenovo Linux password for user <YOUR_USERNAME>."
 
 ssh "$SSH_ALIAS" "set -eu
 mkdir -p '$BACKUP_DIR'
