@@ -278,3 +278,13 @@
   >   completing install and rebooting.
   > - LENOVA-SSH.md missing steps 13/14/16/18: router static IP reservation note, ssh-keygen on Mac,
   >   ssh-copy-id to Lenovo, verifying passwordless ssh thinkpad.
+
+## CR-20260603-1700
+- Timestamp: 2026-06-03 17:00 America/Los_Angeles
+- Request:
+  > create add a new skill to the source code that can be used to convert any windows or imac to a headless linux server.
+
+## CR-20260603-1800
+- Timestamp: 2026-06-03 18:00 America/Los_Angeles
+- Request:
+  > add the skill to the project and check in headless-linux-server/references/imac-efi.md

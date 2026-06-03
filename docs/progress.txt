@@ -2,7 +2,7 @@ Agent: Claude Code (claude-sonnet-4-6)
 Model: claude-sonnet-4-6
 Skills: athena, superpowers:test-driven-development, superpowers:executing-plans, superpowers:verification-before-completion
 
-Current goal: Document all missing setup steps (CR-20260603-1600).
+Current goal: Add headless-linux-server skill to project and commit (CR-20260603-1700, CR-20260603-1800).
 
 ARCHIVE_SUMMARY
 
@@ -29,6 +29,9 @@ IN PROGRESS
 DONE
 - T-DOC-001: Add install sequence steps 6-11 to README.md (Rufus settings, F12, live boot, installer choice, unallocated space, post-install). (Skills: athena) — 2026-06-03
 - T-DOC-002: Add SSH key setup section to LENOVA-SSH.md (router static IP note, ssh-keygen, ssh-copy-id, Host alias, verify ssh thinkpad). (Skills: athena) — 2026-06-03
+
+DONE
+- T-SKILL-001: Create headless-linux-server skill with SKILL.md, references/windows-bios.md, references/imac-efi.md, references/post-install.md in ~/.claude/skills/ and copy into skills/ in lenova project. (Skills: athena, skill-creator) — 2026-06-03
 
 NEXT
 - None.

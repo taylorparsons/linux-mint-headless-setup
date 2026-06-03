@@ -40,3 +40,4 @@
 ## Backlog
 
 - Document all missing setup steps in `README.md` (install sequence steps 6-11) and `LENOVA-SSH.md` (SSH key setup). (Sources: CR-20260603-1600)
+- Add headless-linux-server skill to `/Volumes/T9/code/lenova/skills/headless-linux-server/` with SKILL.md, references/windows-bios.md, references/imac-efi.md, and references/post-install.md for converting any Windows PC or iMac to a headless Linux Mint server. (Sources: CR-20260603-1700, CR-20260603-1800)
